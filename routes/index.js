@@ -1,5 +1,8 @@
 var express = require('express');
+const ArticlesModel = require('../models/articles');
 var router = express.Router();
+var mongoose = require('mongoose')
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -22,8 +25,9 @@ router.get('/users-page', function(req, res, next) {
 });
 
 /* GET Catalog page. */
-router.get('/catalog-page', function(req, res, next) {
-  res.render('catalog');
+router.get('/catalog-page', async function(req, res, next) {
+  var articles = await ArticlesModel.find()
+  res.render('catalog', {articles, articles});
 });
 
 /* GET Orders-list page. */
