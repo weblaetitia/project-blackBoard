@@ -138,72 +138,35 @@
                     </tr>
                   </tfoot>
                   <tbody>
-                    <tr>
-                      <td>Mon Oct 01 2018 02:00:00 GMT+0200 (GMT+02:00)</td>
-                      <td>869€</td>
-                      <td>23€</td>
-                      <td class="status-secondary"><i class="fas fa-circle"></i></td>
-                      <td>-</td>
-                      <td class="status-secondary"><i class="fas fa-circle"></i></td>
-                      <td>-</td>
-                      <td>22 Rue des Martyrs</td>
-                      <td>Paris</td>
-                      <td>75009</td>
-                      <td><a href="/order-page">voir</a></td>
-                    </tr>
-                    <tr>
-                      <td>Mon Oct 01 2018 02:00:00 GMT+0200 (GMT+02:00)</td>
-                      <td>654€</td>
-                      <td>29€</td>
-                      <td class="status-success"><i class="fas fa-circle"></i></td>
-                      <td>Mon Oct 01 2018 02:00:00 GMT+0200 (GMT+02:00)</td>
-                      <td class="status-secondary"><i class="fas fa-circle"></i></td>
-                      <td>-</td>
-                      <td>76 Avenue Georges 5</td>
-                      <td>Paris</td>
-                      <td>75008</td>
-                      <td><a href="/order-page">voir</a></td>
-                    </tr>
-                    <tr>
-                      <td>Mon Oct 01 2018 02:00:00 GMT+0200 (GMT+02:00)</td>
-                      <td>910€</td>
-                      <td>33€</td>
-                      <td class="status-success"><i class="fas fa-circle"></i></td>
-                      <td>Mon Oct 01 2018 02:00:00 GMT+0200 (GMT+02:00)</td>
-                      <td class="status-success"><i class="fas fa-circle"></i></td>
-                      <td>Mon Oct 01 2018 02:00:00 GMT+0200 (GMT+02:00)</td>
-                      <td>7 Rue d'Athènes</td>
-                      <td>Paris</td>
-                      <td>75009</td>
-                      <td><a href="/order-page">voir</a></td>
-                    </tr>
-                    <tr>
-                      <td>Mon Oct 01 2018 02:00:00 GMT+0200 (GMT+02:00)</td>
-                      <td>430€</td>
-                      <td>23€</td>
-                      <td class="status-danger"><i class="fas fa-circle"></i></td>
-                      <td>refusé</td>
-                      <td class="status-secondary"><i class="fas fa-circle"></i></td>
-                      <td>-</td>
-                      <td>13 Rue Tupin</td>
-                      <td>Lyon</td>
-                      <td>69002</td>
-                      <td><a href="/order-page">voir</a></td>
-                    </tr>
-                    <tr>
-                      <td>Mon Oct 01 2018 02:00:00 GMT+0200 (GMT+02:00)</td>
-                      <td>632€</td>
-                      <td>27€</td>
-                      <td class="status-success"><i class="fas fa-circle"></i></td>
-                      <td>Mon Oct 01 2018 02:00:00 GMT+0200 (GMT+02:00)</td>
-                      <td class="status-success"><i class="fas fa-circle"></i></td>
-                      <td>Mon Oct 01 2018 02:00:00 GMT+0200 (GMT+02:00)</td>
-                      <td>33 Rue Malesherbes</td>
-                      <td>Lyon</td>
-                      <td>69006</td>
-                      <td><a href="/order-page">voir</a></td>
-                    </tr>
-
+                    <% orders.forEach(order => { %>
+                      <tr>
+                        <td><%= order.date_insert %></td>
+                        <td><%= order.total %>&nbsp;€</td>
+                        <td><%= order.shipping_cost %>&nbsp;€</td>
+                        <% if (order.status_payment == 'waiting') { %>
+                          <td class="status-warning">
+                          <% } else if (order.status_payment == 'refused') { %>
+                            <td class="status-danger">
+                          <% } else if (order.status_payment == 'validated') { %>
+                            <td class="status-success">
+                          <% } else  { %>
+                            <td class="status-secondary">
+                        <% } %>
+                        <i class="fas fa-circle"></i></td>
+                        <td><%= order.date_payment %></td>
+                        <% if (order.status_shipment) { %>
+                          <td class="status-success">
+                          <% } else { %>
+                            <td class="status-secondary">
+                          <% } %>
+                        <i class="fas fa-circle"></i></td>
+                        <td><%= order.date_shipment %></td>
+                        <td><%= order.delivery_address %></td>
+                        <td><%= order.delivery_city %></td>
+                        <td><%= order.delivery_zipcode %></td>
+                        <td><a href="/order-page/<%= order._id %>">voir</a></td>
+                      </tr>
+                    <% }); %>
                   </tbody>
                 </table>
               </div>

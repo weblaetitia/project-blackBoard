@@ -1,5 +1,6 @@
 var express = require('express');
 const ArticlesModel = require('../models/articles');
+var OrdersModel = require('../models/orders')
 var router = express.Router();
 var mongoose = require('mongoose')
 
@@ -31,8 +32,10 @@ router.get('/catalog-page', async function(req, res, next) {
 });
 
 /* GET Orders-list page. */
-router.get('/orders-list-page', function(req, res, next) {
-  res.render('orders-list');
+router.get('/orders-list-page', async function(req, res, next) {
+  var orders = await OrdersModel.find()
+  console.log(orders)
+  res.render('orders-list', {orders:orders});
 });
 
 /* GET Order detail page. */

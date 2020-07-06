@@ -384,12 +384,16 @@ body.sidebar-toggled footer.sticky-footer {
 }
 
 .status-success {
-  color:#c3e6cb;
+  color: lightgreen;
+  text-align: center;
+}
+.status-warning {
+  color:orange;
   text-align: center;
 }
 
 .status-danger {
- color:#f5c6cb;
+ color: orangered;
  text-align: center;
 }
 
