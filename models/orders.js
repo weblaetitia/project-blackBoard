@@ -11,7 +11,10 @@ var orderSchema = mongoose.Schema({
     date_shipment: Date,
     delivery_address: String,
     delivery_city: String,
-    delivery_zipcode: String
+    delivery_zipcode: String,
+    articles: [{ 
+        type : mongoose.Schema.Types.ObjectId, ref: 'articles'
+    }]
 })
 
 // model

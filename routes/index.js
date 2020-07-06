@@ -34,13 +34,15 @@ router.get('/catalog-page', async function(req, res, next) {
 /* GET Orders-list page. */
 router.get('/orders-list-page', async function(req, res, next) {
   var orders = await OrdersModel.find()
-  console.log(orders)
   res.render('orders-list', {orders:orders});
 });
 
 /* GET Order detail page. */
-router.get('/order-page', function(req, res, next) {
-  res.render('order');
+router.get('/order-page', async function(req, res, next) {
+  var myOrder = await OrdersModel.findById(req.query.orderid).populate('articles').exec()
+  console.log(myOrder)
+
+  res.render('order', {order:myOrder});
 });
 
 /* GET chart page. */

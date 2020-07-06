@@ -127,17 +127,30 @@
 
                   <tbody>
                     <tr>
-                      <td>Mon Oct 01 2018 02:00:00 GMT+0200 (GMT+02:00)</td>
-                      <td>869€</td>
-                      <td>23€</td>
-                      <td class="status-secondary"><i class="fas fa-circle"></i></td>
-                      <td>-</td>
-                      <td class="status-secondary"><i class="fas fa-circle"></i></td>
-                      <td>-</td>
-                      <td>22 Rue des Martyrs</td>
-                      <td>Paris</td>
-                      <td>75009</td>
-
+                      <td><%= order.date_insert %></td>
+                      <td><%= order.total %>&nbsp;€</td>
+                      <td><%= order.shipping_cost %>&nbsp;€</td>
+                      <% if (order.status_payment == 'waiting') { %>
+                        <td class="status-warning">
+                        <% } else if (order.status_payment == 'refused') { %>
+                          <td class="status-danger">
+                        <% } else if (order.status_payment == 'validated') { %>
+                          <td class="status-success">
+                        <% } else  { %>
+                          <td class="status-secondary">
+                      <% } %>
+                      <i class="fas fa-circle"></i></td>
+                      <td><%= order.date_payment %></td>
+                      <% if (order.status_shipment) { %>
+                        <td class="status-success">
+                        <% } else { %>
+                          <td class="status-secondary">
+                        <% } %>
+                      <i class="fas fa-circle"></i></td>
+                      <td><%= order.date_shipment %></td>
+                      <td><%= order.delivery_address %></td>
+                      <td><%= order.delivery_city %></td>
+                      <td><%= order.delivery_zipcode %></td>
                     </tr>
 
                   </tbody>
@@ -165,20 +178,16 @@
                     </tr>
                   </tfoot>
                   <tbody>
-                    <tr>
-                      <td>Ninebot by Segway Kickscooter ES2</td>
-                      <td>Urbain - Route (8'), Autonomie Jusqu'à 25 km, Vitesse max. 25 km/h</td>
-                      <td>12,5kg</td>
-                      <td>499€</td>
-                      <td><img src="/images/ninebot-segway-kickscooter.jpg"></td>
-                    </tr>
-                    <tr>
-                      <td>Xiaomi M365</td>
-                      <td>Autonomie Jusqu'à 25 km, Vitesse max. 25 km/h</td>
-                      <td>12,5kg</td>
-                      <td>370€</td>
-                      <td><img src="/images/xiaomi M365-gris.jpg"></td>
-                    </tr>
+                    <% order.articles.forEach(article => { %>
+                      <tr>
+                        <td><%= article.title %></td>
+                        <td><%= article.description %></td>
+                        <td><%= article.weight %>&nbsp;kg</td>
+                        <td><%= article.price %>&nbsp;€</td>
+                        <td><img src="/images/<%= article.img %>"></td>
+                      </tr>
+                    <% })%>
+                    
 
                   </tbody>
                 </table>

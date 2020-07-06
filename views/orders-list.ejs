@@ -164,7 +164,7 @@
                         <td><%= order.delivery_address %></td>
                         <td><%= order.delivery_city %></td>
                         <td><%= order.delivery_zipcode %></td>
-                        <td><a href="/order-page/<%= order._id %>">voir</a></td>
+                        <td><a href="/order-page?orderid=<%= order._id %>">voir</a></td>
                       </tr>
                     <% }); %>
                   </tbody>
