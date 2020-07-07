@@ -17,7 +17,10 @@ router.get('/tasks-page', function(req, res, next) {
 
 /* GET Messages page. */
 router.get('/messages-page', function(req, res, next) {
-  res.render('messages');
+  UserModel.findOne({_id: '5c52e4efaa4beef85aad5e52'}, function(err, admin) {
+    if (err) return handleError(users)
+    res.render('messages', {messages:admin.messages})
+  })
 });
 
 /* GET Users page. */

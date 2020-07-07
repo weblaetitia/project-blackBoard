@@ -3,20 +3,20 @@ var mongoose = require('mongoose')
 // Schema messages
 var MessageSchema = mongoose.Schema( {
     title: String,
-        content: String,
-        dateExp: Date,
-        read: Boolean,
-        sender: String
+    content: String,
+    dateExp: Date,
+    read: Boolean,
+    sender: String
 })
 
 // Schema task
 var TaskSchema = mongoose.Schema({
     name: String,
-        category: String,
-        owner: String,
-        dateInsert: Date,
-        dateDue: Date,
-        dateCloture: Date
+    category: String,
+    owner: String,
+    dateInsert: Date,
+    dateDue: Date,
+    dateCloture: Date
 })
 
 // Schema client
