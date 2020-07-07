@@ -16,7 +16,7 @@
 
               <i class="fas fa-fw fa-users"></i>
             </div>
-            <div class="mr-5">20 Articles indisponibles</div>
+            <div class="mr-5"><%= noStocks%> Articles indisponibles</div>
           </div>
           <a class="card-footer text-white clearfix small z-1" href="/catalog-page">
             <span class="float-left">View Details</span>
@@ -33,7 +33,7 @@
             <div class="card-body-icon">
               <i class="fas fa-fw fa-comments"></i>
             </div>
-            <div class="mr-5">3 Messages non lus</div>
+            <div class="mr-5"><%= messages%> Messages non lus</div>
           </div>
           <a class="card-footer text-white clearfix small z-1" href="/messages-page">
             <span class="float-left">View Details</span>
@@ -51,7 +51,7 @@
             <div class="card-body-icon">
               <i class="fas fa-fw fa-list"></i>
             </div>
-            <div class="mr-5">4 Tâches en cours</div>
+            <div class="mr-5"><%= tasks %> Tâches en cours</div>
           </div>
           <a class="card-footer text-white clearfix small z-1" href="/tasks-page">
             <span class="float-left">View Details</span>

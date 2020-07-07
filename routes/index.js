@@ -7,7 +7,27 @@ var router = express.Router()
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index');
+  // exemple
+  // Athlete.
+  // find().
+  // where('sport').equals('Tennis').
+  // where('age').gt(17).lt(50).  //Additional where query
+  // limit(5).
+  // sort({ age: -1 }).
+  // select('name age').
+  // exec(callback); // where callback is the name of our callback function.
+
+  ArticlesModel.find().where('stock').equals(0).exec(function (err, noStocks) {
+    if (err) return handleError(err)
+    console.log(noStocks.length)
+    UserModel.findOne({_id: '5c52e4efaa4beef85aad5e52'}).where('messages.read').equals(false).exec(function (err, admin) {
+      if (err) return handleError(err)
+      console.log(admin.messages.length) // à corriger
+      console.log(admin.tasks.length)
+      res.render('index', {noStocks: noStocks.length, messages: admin.messages.length, tasks: admin.tasks.length})
+      
+    })
+  })
 });
 
 /* GET tasks page. */
