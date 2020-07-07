@@ -28,6 +28,7 @@ var UserSchema = mongoose.Schema({
     age: Number,
     status: String,
     gender: String,
+    dateInsert: Date,
     messages: [MessageSchema],
     tasks: [TaskSchema]
 })
