@@ -129,6 +129,21 @@
                     </tr>
                   </tfoot>
                   <tbody>
+                    <% users.forEach(user => {%>
+                    <tr>
+                      <td><%= user.firstName %></td>
+                      <td><%= user.lastName %></td>
+                      <td><%= user.email %></td>
+                      <td><%= user.password %></td>
+                      <td><%= user.age %></td>
+                      <% if (user.gender === 'female') {
+                        var gender = 'fa-female'
+                      } else {
+                        var gender = 'fa-male' } %>
+                      <td><i class="fas <%= gender %>"></i></td>
+                      <td><%= user.dateInsert %></td>
+                    </tr>
+                    <% }) %>
                     <tr>
                       <td>John</td>
                       <td>Doe</td>
@@ -147,78 +162,7 @@
                       <td><i class="fas fa-female"></i></td>
                       <td>15/01/2011</td>
                     </tr>
-                    <tr>
-                      <td>Matt</td>
-                      <td>Kallil</td>
-                      <td>matt@gmail.com</td>
-                      <td>*******</td>
-                      <td>41</td>
-                      <td><i class="fas fa-male"></i></td>
-                      <td>17/01/2019</td>
-                    </tr>
-                    <tr>
-                      <td>Jerome</td>
-                      <td>Kapa</td>
-                      <td>jekapa@gmail.com</td>
-                      <td>*******</td>
-                      <td>37</td>
-                      <td><i class="fas fa-male"></i></td>
-                      <td>27/10/2018</td>
-                    </tr>
-                    <tr>
-                      <td>Mika</td>
-                      <td>Louka</td>
-                      <td>louka7@hotmail.com</td>
-                      <td>*******</td>
-                      <td>25</td>
-                      <td><i class="fas fa-male"></i></td>
-                      <td>16/10/2018</td>
-                    </tr>
-                    <tr>
-                      <td>Samantha</td>
-                      <td>Tiralo</td>
-                      <td>sam@hotmail.com</td>
-                      <td>*******</td>
-                      <td>29</td>
-                      <td><i class="fas fa-female"></i></td>
-                      <td>13/09/2018</td>
-                    </tr>
-                    <tr>
-                      <td>Elise</td>
-                      <td>Zaro</td>
-                      <td>elizaro@gmail.com</td>
-                      <td>*******</td>
-                      <td>21</td>
-                      <td><i class="fas fa-female"></i></td>
-                      <td>07/07/2018</td>
-                    </tr>
-                    <tr>
-                      <td>Tom</td>
-                      <td>Jonaz</td>
-                      <td>tojo@hotmail.com</td>
-                      <td>*******</td>
-                      <td>36</td>
-                      <td><i class="fas fa-male"></i></td>
-                      <td>26/09/2018</td>
-                    </tr>
-                    <tr>
-                      <td>Tom</td>
-                      <td>Jonaz</td>
-                      <td>tojo@hotmail.com</td>
-                      <td>*******</td>
-                      <td>36</td>
-                      <td><i class="fas fa-male"></i></td>
-                      <td>26/09/2018</td>
-                    </tr>
-                    <tr>
-                      <td>Manon</td>
-                      <td>Viro</td>
-                      <td>viroman@gmail.com</td>
-                      <td>*******</td>
-                      <td>41</td>
-                      <td><i class="fas fa-female"></i></td>
-                      <td>01/07/2018</td>
-                    </tr>
+                    
                   </tbody>
                 </table>
               </div>

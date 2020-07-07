@@ -1,8 +1,8 @@
-var express = require('express');
-const ArticlesModel = require('../models/articles');
+var express = require('express')
+var ArticlesModel = require('../models/articles')
 var OrdersModel = require('../models/orders')
-var router = express.Router();
-var mongoose = require('mongoose')
+var UserModel = require('../models/users')
+var router = express.Router()
 
 
 /* GET home page. */
@@ -22,7 +22,11 @@ router.get('/messages-page', function(req, res, next) {
 
 /* GET Users page. */
 router.get('/users-page', function(req, res, next) {
-  res.render('users');
+  // callback method
+  UserModel.find({ status: 'customer' }, function(err, users) {
+    if (err) return handleError(users)
+    res.render('users', {users:users});
+  })
 });
 
 /* GET Catalog page. */
