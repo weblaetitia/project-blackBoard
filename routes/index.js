@@ -12,13 +12,16 @@ router.get('/', function(req, res, next) {
 
 /* GET tasks page. */
 router.get('/tasks-page', function(req, res, next) {
-  res.render('tasks');
+  UserModel.findOne({_id: '5c52e4efaa4beef85aad5e52'}, function(err, admin) {
+    if (err) return handleError(err)
+    res.render('tasks', {tasks:admin.tasks})
+  })
 });
 
 /* GET Messages page. */
 router.get('/messages-page', function(req, res, next) {
   UserModel.findOne({_id: '5c52e4efaa4beef85aad5e52'}, function(err, admin) {
-    if (err) return handleError(users)
+    if (err) return handleError(err)
     res.render('messages', {messages:admin.messages})
   })
 });
