@@ -78,8 +78,16 @@ router.get('/order-page', async function(req, res, next) {
 });
 
 /* GET chart page. */
-router.get('/charts', function(req, res, next) {
-  res.render('charts');
+router.get('/charts', async function(req, res, next) {
+  var genderAgg = UserModel.aggregate()
+  genderAgg.match({'status': 'customer'})
+  genderAgg.group({
+    _id:('$gender'),
+    usercount: {$sum: 1}
+  })
+  var dataGender = await genderAgg.exec()
+  console.log(dataGender)
+  res.render('charts', {dataGender:dataGender});
 });
 
 

@@ -9,20 +9,53 @@
 
     <div class="row">
 
-      <div class="col-12 col-md-4 mb-3 chart">
-        <img class="img-fluid" src="/images/chart1.jpg">
+      <div class="col-12 col-md-6 col-lg-4 mb-3 chart">
+        <div class="card">
+          <div class="card-header">
+            <i class="fas fa-chart-pie mr-2"></i>Nombre d'utilisateurs par sexe
+          </div>
+          <% 
+          var maleNumber = 0
+          var femaleNumber = 0
+          dataGender.forEach(data => {
+            if (data._id == 'male') {
+              maleNumber = data.usercount
+              console.log(maleNumber)
+              } else if (data._id == 'female') {
+                femaleNumber = data.usercount
+                console.log(femaleNumber)
+              }
+            }); 
+          %>
+          <canvas id="gender" class="card-img-bottom" data-female="<%= femaleNumber %>" data-male="<%= maleNumber %>"></canvas>
+        </div>
       </div>
 
-      <div class="col-12 col-md-4 mb-3 chart">
-        <img class="img-fluid" src="/images/chart2.jpg">
+      <div class="col-12 col-md-6 col-lg-4 mb-3 chart">
+        <div class="card">
+          <div class="card-header">
+            <i class="fas fa-chart-pie mr-2"></i>Nombre de messages non-lus
+          </div>
+          <canvas id="unread-messages" class="card-img-bottom"></canvas>
+        </div>
       </div>
 
-      <div class="col-12 col-md-4 mb-3 chart">
-        <img class="img-fluid" src="/images/chart3.jpg">
+      <div class="col-12 col-md-6 col-lg-4 mb-3 chart">
+        <div class="card">
+          <div class="card-header">
+            <i class="fas fa-chart-pie mr-2"></i>Cmd éxpédiées/non-expédiées
+          </div>
+          <canvas id="commandes" class="card-img-bottom"></canvas>
+        </div>
       </div>
 
-      <div class="col-12 col-md-4 mb-3 chart">
-        <img class="img-fluid" src="/images/chart4.jpg">
+      <div class="col-12 col-md-6 col-lg-4 mb-3 chart">
+        <div class="card">
+          <div class="card-header">
+            <i class="fas fa-chart-pie mr-2"></i>Chiffre d'affaires par mois
+          </div>
+          <canvas id="chiffre-affaires" class="card-img-bottom"></canvas>
+        </div>
       </div>
       
     </div>
@@ -30,4 +63,40 @@
   </div>
   <!-- /.container-fluid -->
 
-  <%- include('footer') %>
+<!-- Sticky Footer -->
+<footer class="sticky-footer">
+  <div class="container my-auto">
+    <div class="copyright text-center my-auto">
+      <span>Copyright © Blackboard</span>
+    </div>
+  </div>
+</footer>
+
+</div>
+<!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+
+
+<!-- Bootstrap core JavaScript-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+<!-- Page level plugin JavaScript-->
+<script src="vendor/chart.js/Chart.min.js"></script>
+
+<!-- Carts.js -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script> -->
+<script src="js/dataviz.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin.min.js"></script>
+
+
+</body>
+
+</html>
