@@ -79,6 +79,7 @@ router.get('/order-page', async function(req, res, next) {
 
 /* GET chart page. */
 router.get('/charts', async function(req, res, next) {
+  // nombre d'hommes et femmes
   var genderAgg = UserModel.aggregate()
   genderAgg.match({'status': 'customer'})
   genderAgg.group({
@@ -86,8 +87,34 @@ router.get('/charts', async function(req, res, next) {
     usercount: {$sum: 1}
   })
   var dataGender = await genderAgg.exec()
-  console.log(dataGender)
-  res.render('charts', {dataGender:dataGender});
+  
+  // // nombre de messages lus/non-lus
+  // var messageAgg = UserModel.aggregate()
+  // messageAgg.match({'user':'admin'})
+  // messageAgg.unwind('$messages')
+  // messageAgg.project({mymessages: '$messages'})
+  // messageAgg.group( {
+  //   _id:('$mymessages')
+  // })
+  // var dataMessages = await messageAgg.exec()
+  // console.log(dataMessages)
+
+  // chiffre d'affaires
+  var caAgg = OrdersModel.aggregate()
+  caAgg.match({'status_payment':'validated'})
+  caAgg.group({
+    _id: {
+      year: {$year:'$date_payment'},
+      month: {$month:'$date_payment'}
+    },
+    sum: {$sum: '$total'}
+  })
+  var dataCA = await caAgg.exec()
+
+
+
+  // res render
+  res.render('charts', {dataGender:dataGender, dataCA:dataCA});
 });
 
 

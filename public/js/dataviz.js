@@ -79,7 +79,7 @@ var caChart = new Chart(ca, {
         label :'Chiffre d\'affaires',
         datasets: [{
             label: ['CA'],
-            data: [2000, 3000, 4000, 2500, 2000, 3000, 4000, 2500, 2000, 3000, 4000, 2500],
+            data: ca2019,
             backgroundColor: [
                 'rgba(54, 162, 235, 0.2)'
             ],

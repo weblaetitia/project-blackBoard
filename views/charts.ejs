@@ -20,10 +20,8 @@
           dataGender.forEach(data => {
             if (data._id == 'male') {
               maleNumber = data.usercount
-              console.log(maleNumber)
               } else if (data._id == 'female') {
                 femaleNumber = data.usercount
-                console.log(femaleNumber)
               }
             }); 
           %>
@@ -48,7 +46,17 @@
           <canvas id="commandes" class="card-img-bottom"></canvas>
         </div>
       </div>
-
+      <% 
+        ca2019 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        for (var i=0; i<dataCA.length; i++) {
+          var x = dataCA[i]._id.month
+          ca2019[x-1] = dataCA[i].sum
+        }
+        %>
+        <script>
+          var ca2019 =[<%=ca2019 %>]
+        </script>
+        
       <div class="col-12 col-md-6 col-lg-4 mb-3 chart">
         <div class="card">
           <div class="card-header">
