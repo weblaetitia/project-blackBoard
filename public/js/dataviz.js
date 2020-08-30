@@ -11,17 +11,20 @@ var genderChart = new Chart(gender, {
             label: 'Utilisateurs',
             data: [gender.dataset.female, gender.dataset.male],
             backgroundColor: [
-                '#fd9644',
-                '#26de81'
+                'rgba(253,150,68,0.6)',
+                'rgba(255,161,135,0.63)'
             ],
             borderColor: [
                 '#fa8231',
-                '#20bf6b'
+                'tomato'
             ],
             borderWidth: 1
         }]
     },
     options: {
+        legend: {
+            display: false
+        },
         scales: {
             yAxes: [{
                 ticks: {
@@ -88,5 +91,10 @@ var caChart = new Chart(ca, {
             ],
             borderWidth: 1
         }]
+    },
+    options: {
+        legend: {
+            display: false
+        }
     }
 });
